@@ -1,0 +1,11 @@
+color:
+   1: "&b&l"
+   2: "&7"
+   3: "&8"
+   4: "&3"
+messages:
+   prefix: "{3}[{1}Multiplier{3}] {2}"
+   next-page: "{1}Next page {2}»"
+   previous-page: "{2}« {1}Previous page"
+   no-next-page: "{prefix}This is the last page."
+   no-previous-page: "{prefix}This is the first page."

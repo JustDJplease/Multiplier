@@ -1,0 +1,12 @@
+name: Multiplier
+main: me.theblockbender.multiplier.Main
+description: Fancy multiplier for experience from all sorts of plugins!
+author: TheBlockBender
+permission-message: You are not allowed to do this!
+version: ${version}
+softdepend: [SkillAPI, mcMMO, Jobs, HolographicDisplays]
+
+commands:
+  multiplier:
+    description: Opens the multiplier menu
+    aliases: [multipliers, multi]
