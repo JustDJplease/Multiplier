@@ -7,5 +7,7 @@ messages:
    prefix: "{3}[{1}Multiplier{3}] {2}"
    next-page: "{1}Next page {2}»"
    previous-page: "{2}« {1}Previous page"
+   gui-title: "Your multipliers:"
    no-next-page: "{prefix}This is the last page."
    no-previous-page: "{prefix}This is the first page."
+   loading-boosters: "{prefix}Loading your boosters. This might take a second."

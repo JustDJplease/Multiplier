@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class UtilItem {
-    public ArrayList<ItemStack> createItemsFromResultSet(HashMap<Integer, HashMap<String, Object>> data) {
+    public static ArrayList<ItemStack> createItemsFromResultSet(HashMap<Integer, HashMap<String, Object>> data) {
         ArrayList<ItemStack> items = new ArrayList<>();
         for (Map.Entry<Integer, HashMap<String, Object>> data_id : data.entrySet()) {
             Integer id = data_id.getKey();
