@@ -48,25 +48,47 @@ public class UtilLanguage {
      * @return Message found at path.
      */
     private String getMessage(String path) {
-        // TODO
-        return "placeholder";
+        return main.messages.getString("path");
     }
 
 
+    /**
+     * Sends a message to the player
+     *
+     * @param player Player to receive the message
+     * @param string Path to the message in the configuration file.
+     */
     public void sendMessage(Player player, String string) {
         player.sendMessage(translateColour(string));
     }
 
+    /**
+     * Sends a message to the players
+     *
+     * @param players Players to receive the message
+     * @param string  Path to the message in the configuration file.
+     */
     public void sendMessage(List<Player> players, String string) {
         for (Player player : players) {
             sendMessage(player, string);
         }
     }
 
+    /**
+     * Sends a message to all online players
+     *
+     * @param string Path to the message in the configuration file.
+     */
     public void broadcastMessage(String string) {
         Bukkit.broadcastMessage(translateColour(string));
     }
 
+    /**
+     * Fetches and formats a message from the language file.
+     *
+     * @param string Path to the message in the configuration file.
+     * @return formatted Message.
+     */
     public String getFormattedMessage(String string) {
         return translateColour(string);
     }
