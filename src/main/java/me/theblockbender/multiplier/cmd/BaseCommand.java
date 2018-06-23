@@ -12,14 +12,18 @@ import org.bukkit.entity.Player;
 
 public class BaseCommand implements CommandExecutor {
 
-    private Main main = new Main();
-    private EndCommand endCommand = new EndCommand();
-    private GiveCommand giveCommand = new GiveCommand();
-    private MenuCommand menuCommand = new MenuCommand();
-    private StartCommand startCommand = new StartCommand();
+    private Main main;
+    private EndCommand endCommand;
+    private GiveCommand giveCommand;
+    private MenuCommand menuCommand;
+    private StartCommand startCommand;
 
     public BaseCommand(Main main) {
         this.main = main;
+        endCommand = new EndCommand(main);
+        giveCommand = new GiveCommand(main);
+        menuCommand = new MenuCommand(main);
+        startCommand = new StartCommand(main);
     }
 
     @Override
@@ -31,24 +35,36 @@ public class BaseCommand implements CommandExecutor {
                 else
                     main.getLanguage().sendMessage(commandSender, "no-player");
                 return true;
-            case 1:
-                sendHelp(commandSender);
-                return true;
+            case 2:
+                if (args[0].equalsIgnoreCase("end")) {
+                    endCommand.run(commandSender, args, label);
+                    return true;
+                }
+                break;
+            case 4:
+                if (args[0].equalsIgnoreCase("start")) {
+                    startCommand.run(commandSender, args, label);
+                    return true;
+                }
+                break;
+            case 6:
+                if (args[0].equalsIgnoreCase("give")) {
+                    giveCommand.run(commandSender, args, label);
+                    return true;
+                }
+                break;
             default:
-                sendHelp(commandSender);
-                return true;
+                break;
         }
-        // /booster give <player> <amount> <type> <multiplier> <duration>
-        // /booster start <type> <multiplier> <duration>
-        // /booster end <type>
-        // /booster
+        sendHelp(commandSender, label);
+        return true;
     }
 
-    private void sendHelp(CommandSender commandSender) {
-        main.getLanguage().sendMessage(commandSender, "help-header");
-        main.getLanguage().sendMessage(commandSender, "help-menu");
-        main.getLanguage().sendMessage(commandSender, "help-give");
-        main.getLanguage().sendMessage(commandSender, "help-start");
-        main.getLanguage().sendMessage(commandSender, "help-end");
+    private void sendHelp(CommandSender commandSender, String alias) {
+        commandSender.sendMessage(main.getLanguage().getFormattedMessage("help-header").replace("{alias}", alias));
+        commandSender.sendMessage(main.getLanguage().getFormattedMessage("help-menu").replace("{alias}", alias));
+        commandSender.sendMessage(main.getLanguage().getFormattedMessage("help-give").replace("{alias}", alias));
+        commandSender.sendMessage(main.getLanguage().getFormattedMessage("help-start").replace("{alias}", alias));
+        commandSender.sendMessage(main.getLanguage().getFormattedMessage("help-end").replace("{alias}", alias));
     }
 }

@@ -1,5 +1,6 @@
 package me.theblockbender.multiplier;
 
+import me.theblockbender.multiplier.cmd.BaseCommand;
 import me.theblockbender.multiplier.data.Database;
 import me.theblockbender.multiplier.data.SQLite;
 import me.theblockbender.multiplier.listener.GuiPageListener;
@@ -38,6 +39,7 @@ public class Main extends JavaPlugin {
         db.load();
         language = new UtilLanguage(this);
         registerEvents();
+        registerCommands();
     }
 
     public void onDisable() {
@@ -56,6 +58,10 @@ public class Main extends JavaPlugin {
     private void registerEvents() {
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new GuiPageListener(this), this);
+    }
+
+    private void registerCommands(){
+        getCommand("multiplier").setExecutor(new BaseCommand(this));
     }
 
     public UtilLanguage getLanguage() {

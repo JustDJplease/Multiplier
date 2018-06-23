@@ -27,7 +27,7 @@ public class ScrollerInventory {
      * @param name   Name of the inventory.
      * @param player Player this inventory should open for.
      */
-    public ScrollerInventory(ArrayList<ItemStack> items, String name, Player player) {
+    ScrollerInventory(ArrayList<ItemStack> items, String name, Player player) {
         Inventory page = getBlankPage(name);
         for (ItemStack item : items) {
             if (page.firstEmpty() == 46) {
