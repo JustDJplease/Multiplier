@@ -3,6 +3,7 @@ package me.theblockbender.multiplier.util;
 import me.theblockbender.multiplier.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -91,5 +92,15 @@ public class UtilLanguage {
      */
     public String getFormattedMessage(String string) {
         return translateColour(string);
+    }
+
+    /**
+     * Sends a message to the CommandSender
+     *
+     * @param commandSender CommandSender (Console/Player) to receive the message
+     * @param string        Path to the message in the configuration file.
+     */
+    public void sendMessage(CommandSender commandSender, String string) {
+        commandSender.sendMessage(translateColour(string));
     }
 }
