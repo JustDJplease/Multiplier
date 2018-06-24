@@ -12,6 +12,7 @@ public class GiveCommand {
     }
 
     public void run(CommandSender commandSender, String[] args, String alias) {
+        // Validator:
         if (!commandSender.hasPermission("multiplier.admin.give")) {
             main.getLanguage().sendMessage(commandSender, "no-permission");
             return;

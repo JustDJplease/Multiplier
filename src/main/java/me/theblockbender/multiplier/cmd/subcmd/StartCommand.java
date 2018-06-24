@@ -12,6 +12,7 @@ public class StartCommand {
     }
 
     public void run(CommandSender commandSender, String[] args, String alias) {
+        // Validator:
         if (!commandSender.hasPermission("multiplier.admin.start")) {
             main.getLanguage().sendMessage(commandSender, "no-permission");
             return;
