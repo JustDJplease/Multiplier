@@ -32,4 +32,9 @@ public class Booster {
         Long timeEnd = timeStarted + duration;
         return System.currentTimeMillis() <= timeEnd;
     }
+
+    public long getTimeLeft() {
+        Long timeEnd = timeStarted + duration;
+        return timeEnd - System.currentTimeMillis();
+    }
 }

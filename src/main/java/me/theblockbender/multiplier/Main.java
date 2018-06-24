@@ -1,5 +1,7 @@
 package me.theblockbender.multiplier;
 
+import me.theblockbender.multiplier.booster.Booster;
+import me.theblockbender.multiplier.booster.BoosterTask;
 import me.theblockbender.multiplier.cmd.BaseCommand;
 import me.theblockbender.multiplier.data.Database;
 import me.theblockbender.multiplier.data.SQLite;
@@ -14,11 +16,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends JavaPlugin {
 
     private static Main instance;
     public FileConfiguration messages;
+    public List<Booster> boosters = new ArrayList<>();
     private Database db;
     private UtilLanguage language;
 
@@ -35,39 +40,57 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         instance = this;
         createFiles();
-        db = new SQLite(this);
-        db.load();
-        language = new UtilLanguage(this);
+        initializeDatabase();
+        registerLocale();
         registerEvents();
         registerCommands();
+        startRunnables();
     }
 
     public void onDisable() {
         db = null;
+        messages = null;
+        boosters.clear();
+        language = null;
         instance = null;
     }
 
-    public void log(String message) {
-        getLogger().warning(message);
-    }
-
+    /**
+     * Get an instance of the database.
+     *
+     * @return Current database instance.
+     */
     public Database getDatabase() {
         return db;
     }
 
+    /**
+     * Register all events.
+     */
     private void registerEvents() {
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new GuiPageListener(this), this);
     }
 
+    /**
+     * Register all commands.
+     */
     private void registerCommands() {
         getCommand("multiplier").setExecutor(new BaseCommand(this));
     }
 
+    /**
+     * Get an instance of the language handler.
+     *
+     * @return Current language instance.
+     */
     public UtilLanguage getLanguage() {
         return language;
     }
 
+    /**
+     * Creates additional files.
+     */
     private void createFiles() {
         File messagesFile = new File(getDataFolder(), "language.yml");
         if (!messagesFile.exists()) {
@@ -80,5 +103,27 @@ public class Main extends JavaPlugin {
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Creates an instance of the locale.
+     */
+    private void registerLocale() {
+        language = new UtilLanguage(this);
+    }
+
+    /**
+     * Creates an instance of the database.
+     */
+    private void initializeDatabase() {
+        db = new SQLite(this);
+        db.load();
+    }
+
+    /**
+     * Starts all runnables.
+     */
+    private void startRunnables() {
+        Bukkit.getScheduler().runTaskTimer(this, new BoosterTask(this), 1L, 1L);
     }
 }
