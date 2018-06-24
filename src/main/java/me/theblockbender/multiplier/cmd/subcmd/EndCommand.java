@@ -1,6 +1,7 @@
 package me.theblockbender.multiplier.cmd.subcmd;
 
 import me.theblockbender.multiplier.Main;
+import me.theblockbender.multiplier.util.UtilMain;
 import org.bukkit.command.CommandSender;
 
 public class EndCommand {
@@ -15,7 +16,12 @@ public class EndCommand {
             main.getLanguage().sendMessage(commandSender, "no-permission");
             return;
         }
-        // TODO validate arguments.
-//        help-end: "{1}/{alias} {4}end <type> {2}Ends active multipliers of that type."
+        if (!UtilMain.isArgumentValidType(args[1])) {
+            main.getLanguage().sendMessage(commandSender, "argument-invalid-type");
+            commandSender.sendMessage(main.getLanguage().getFormattedMessage("help-end").replace("{alias}", alias));
+            return;
+        }
+        // TODO run executor:
+        // arg 1 = valid booster type.
     }
 }

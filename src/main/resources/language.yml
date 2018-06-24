@@ -20,4 +20,5 @@ messages:
    help-end: "{1}/{alias} {4}end <type> {2}Ends active multipliers of that type."
    player-not-online: "{prefix}The specified player is not online."
    argument-not-number: "{prefix}One of the specified arguments is not a number."
-   argument-negative-number: "{prefix}One of the specified arguments is a negative number."
+   argument-abstract-number: "{prefix}One of the specified numbers is too large or too small."
+   argument-invalid-type: "{prefix}One of the specified arguments is not a valid booster type."

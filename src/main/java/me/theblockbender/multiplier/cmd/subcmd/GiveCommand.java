@@ -1,43 +1,51 @@
 package me.theblockbender.multiplier.cmd.subcmd;
 
 import me.theblockbender.multiplier.Main;
-import org.apache.commons.lang.StringUtils;
-import org.bukkit.Bukkit;
+import me.theblockbender.multiplier.util.UtilMain;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 public class GiveCommand {
     private Main main;
 
-    public GiveCommand(Main main){
+    public GiveCommand(Main main) {
         this.main = main;
     }
 
     public void run(CommandSender commandSender, String[] args, String alias) {
-        if(!commandSender.hasPermission("multiplier.admin.give")){
+        if (!commandSender.hasPermission("multiplier.admin.give")) {
             main.getLanguage().sendMessage(commandSender, "no-permission");
             return;
         }
-        Player target = Bukkit.getPlayer(args[1]);
-        if(target == null){
+        if (!UtilMain.isArgumentOnlinePlayer(args[1])) {
             main.getLanguage().sendMessage(commandSender, "player-not-online");
             commandSender.sendMessage(main.getLanguage().getFormattedMessage("help-give").replace("{alias}", alias));
             return;
         }
-        int amount = 1;
-        try {
-            amount = Integer.parseInt(args[2]);
-        }catch(NumberFormatException ex){
-            main.getLanguage().sendMessage(commandSender, "argument-not-number");
+        if (!UtilMain.isArgumentNumberInRange(args[2], 1, 100)) {
+            main.getLanguage().sendMessage(commandSender, "argument-abstract-number");
             commandSender.sendMessage(main.getLanguage().getFormattedMessage("help-give").replace("{alias}", alias));
             return;
         }
-        if(amount < 1){
-            main.getLanguage().sendMessage(commandSender, "argument-negative-number");
+        if (!UtilMain.isArgumentValidType(args[3])) {
+            main.getLanguage().sendMessage(commandSender, "argument-invalid-type");
             commandSender.sendMessage(main.getLanguage().getFormattedMessage("help-give").replace("{alias}", alias));
             return;
         }
-        // TODO validate arguments.
-//        help-give: "{1}/{alias} {4}give <player> <amount> <type> <multiplier> <duration> {2}Give a multiplier."
+        if (!UtilMain.isArgumentNumberInRange(args[4], 1, 1000)) {
+            main.getLanguage().sendMessage(commandSender, "argument-abstract-number");
+            commandSender.sendMessage(main.getLanguage().getFormattedMessage("help-give").replace("{alias}", alias));
+            return;
+        }
+        if (!UtilMain.isArgumentNumberInRange(args[5], -1, 86400)) {
+            main.getLanguage().sendMessage(commandSender, "argument-abstract-number");
+            commandSender.sendMessage(main.getLanguage().getFormattedMessage("help-give").replace("{alias}", alias));
+            return;
+        }
+        // TODO run executor:
+        // arg 1 = valid online player
+        // arg 2 = valid amount
+        // arg 3 = valid booster type
+        // arg 4 = valid multiplier
+        // arg 5 = valid duration
     }
 }
