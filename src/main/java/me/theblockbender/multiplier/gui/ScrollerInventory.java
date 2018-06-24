@@ -2,7 +2,6 @@ package me.theblockbender.multiplier.gui;
 
 import me.theblockbender.multiplier.Main;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -20,6 +19,7 @@ public class ScrollerInventory {
     public static HashMap<UUID, ScrollerInventory> users = new HashMap<>();
     public ArrayList<Inventory> pages = new ArrayList<>();
     public int currpage = 0;
+
     /**
      * This creates a GUI for the player specified, with the items from the list.
      *

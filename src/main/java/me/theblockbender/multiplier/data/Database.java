@@ -12,9 +12,9 @@ import java.util.logging.Level;
 
 public abstract class Database {
 
-    private String table = "multipliers";
     Main plugin;
     Connection connection;
+    private String table = "multipliers";
 
     Database(Main instance) {
         plugin = instance;
@@ -37,6 +37,7 @@ public abstract class Database {
 
     /**
      * Returns all boosters associated with this player's uuid from the local storage.
+     *
      * @param uuid The UUID of the player you wish to lookup.
      * @return Returns a map with all associated entries.
      */
@@ -62,10 +63,8 @@ public abstract class Database {
             plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
         } finally {
             try {
-                if (ps != null)
-                    ps.close();
-                if (conn != null)
-                    conn.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
             } catch (SQLException ex) {
                 plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionClose(), ex);
             }
@@ -75,10 +74,11 @@ public abstract class Database {
 
     /**
      * Creates a new booster entry in the local storage.
-     * @param uuid The UUID of the owner of the booster.
-     * @param type The type of the booster.
-     * @param duration The length of the booster
-     * @param multiplier The multiplier of the booster
+     *
+     * @param uuid        The UUID of the owner of the booster.
+     * @param type        The type of the booster.
+     * @param duration    The length of the booster
+     * @param multiplier  The multiplier of the booster
      * @param timeExpires An expiration timestamp. Leave as -1 for an infinite duration.
      */
     public void setBoosterForPlayer(UUID uuid, String type, Integer duration, Integer multiplier, Long timeExpires) {
@@ -98,10 +98,8 @@ public abstract class Database {
             plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionExecute(), ex);
         } finally {
             try {
-                if (ps != null)
-                    ps.close();
-                if (conn != null)
-                    conn.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
             } catch (SQLException ex) {
                 plugin.getLogger().log(Level.SEVERE, Errors.sqlConnectionClose(), ex);
             }
@@ -110,10 +108,8 @@ public abstract class Database {
 
     private void close(PreparedStatement ps, ResultSet rs) {
         try {
-            if (ps != null)
-                ps.close();
-            if (rs != null)
-                rs.close();
+            if (ps != null) ps.close();
+            if (rs != null) rs.close();
         } catch (SQLException ex) {
             Error.close(plugin, ex);
         }

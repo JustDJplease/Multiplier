@@ -49,9 +49,7 @@ public class UtilLanguage {
      * @return Message found at path.
      */
     private String getMessage(String path) {
-        if (!main.messages.contains(path)) {
-            return "Message not found: " + path;
-        }
+        if (!main.messages.contains(path)) return "Message not found: " + path;
         return main.messages.getString("path");
     }
 

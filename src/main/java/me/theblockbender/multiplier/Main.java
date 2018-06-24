@@ -18,9 +18,9 @@ import java.io.IOException;
 public class Main extends JavaPlugin {
 
     private static Main instance;
+    public FileConfiguration messages;
     private Database db;
     private UtilLanguage language;
-    public FileConfiguration messages;
 
     /**
      * Static getter of the Main instance. Used in the ScrollGui section.
@@ -60,7 +60,7 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new GuiPageListener(this), this);
     }
 
-    private void registerCommands(){
+    private void registerCommands() {
         getCommand("multiplier").setExecutor(new BaseCommand(this));
     }
 

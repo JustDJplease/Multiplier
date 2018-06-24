@@ -17,18 +17,13 @@ public class GuiPageListener implements Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onClick(InventoryClickEvent event) {
-        if (!(event.getWhoClicked() instanceof Player))
-            return;
+        if (!(event.getWhoClicked() instanceof Player)) return;
         Player player = (Player) event.getWhoClicked();
-        if (!ScrollerInventory.users.containsKey(player.getUniqueId()))
-            return;
+        if (!ScrollerInventory.users.containsKey(player.getUniqueId())) return;
         ScrollerInventory inv = ScrollerInventory.users.get(player.getUniqueId());
-        if (event.getCurrentItem() == null)
-            return;
-        if (event.getCurrentItem().getItemMeta() == null)
-            return;
-        if (event.getCurrentItem().getItemMeta().getDisplayName() == null)
-            return;
+        if (event.getCurrentItem() == null) return;
+        if (event.getCurrentItem().getItemMeta() == null) return;
+        if (event.getCurrentItem().getItemMeta().getDisplayName() == null) return;
         if (event.getCurrentItem().getItemMeta().getDisplayName().equals(ScrollerInventory.nextPageName)) {
             event.setCancelled(true);
             if (inv.currpage >= inv.pages.size() - 1) {
