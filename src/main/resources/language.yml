@@ -24,6 +24,7 @@ messages:
    argument-abstract-number: "{prefix}One of the specified numbers is too large or too small."
    argument-invalid-type: "{prefix}One of the specified arguments is not a valid booster type."
    multiple-people: "Multiple people"
+   the-server: "The server"
 
 time:
    day: "Day"

@@ -1,6 +1,8 @@
 package me.theblockbender.multiplier.cmd.subcmd;
 
 import me.theblockbender.multiplier.Main;
+import me.theblockbender.multiplier.booster.BoosterType;
+import me.theblockbender.multiplier.util.UtilBooster;
 import me.theblockbender.multiplier.util.UtilMain;
 import org.bukkit.command.CommandSender;
 
@@ -43,5 +45,6 @@ public class StartCommand {
         // arg 1 = valid booster type
         // arg 2 = valid multiplier
         // arg 3 = valid duration
+        UtilBooster.startBooster(BoosterType.valueOf(args[1].toLowerCase()), Integer.parseInt(args[2]), Integer.parseInt(args[3]));
     }
 }

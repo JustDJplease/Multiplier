@@ -108,4 +108,11 @@ public class UtilBooster {
         HashMap<BoosterType, List<Booster>> boosters = sortBoostersByType(Main.getInstance().boosters);
         return boosters.containsKey(type);
     }
+
+    public static void startBooster(String owner, BoosterType boosterType, int multiplier, int duration) {
+        if(owner == null) owner = Main.getInstance().getLanguage().getFormattedMessage("messages.the-server");
+        Booster booster = new Booster(owner, boosterType, multiplier, duration);
+        Main.getInstance().boosters.add(booster);
+        // TODO broadcast
+    }
 }
