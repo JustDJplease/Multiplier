@@ -11,7 +11,7 @@ public class UtilMain {
         return (player != null);
     }
 
-    public static Boolean isArgumentNumber(String argument) {
+    private static Boolean isArgumentNumber(String argument) {
         try {
             int i = Integer.parseInt(argument);
         } catch (NumberFormatException ex) {

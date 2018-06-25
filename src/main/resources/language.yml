@@ -3,6 +3,7 @@ color:
    2: "&7"
    3: "&8"
    4: "&3"
+
 messages:
    prefix: "{3}[{1}Multiplier{3}] {2}"
    next-page: "{1}Next page {2}»"
@@ -23,3 +24,23 @@ messages:
    argument-abstract-number: "{prefix}One of the specified numbers is too large or too small."
    argument-invalid-type: "{prefix}One of the specified arguments is not a valid booster type."
    multiple-people: "Multiple people"
+
+time:
+   day: "Day"
+   hour: "Hour"
+   minute: "Minute"
+   second: "Second"
+   millisecond: "Millisecond"
+   not-one: "s"
+
+multiplier:
+   2: "Double"
+   3: "Triple"
+   4: "Quadruple"
+   5: "Quintuple"
+   6: "Sextuple"
+   7: "Septuple"
+   8: "Octuple"
+   9: "Nonuple"
+   10: "Decuple"
+   other: "Mega"

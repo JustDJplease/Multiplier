@@ -6,6 +6,7 @@ import me.theblockbender.multiplier.cmd.BaseCommand;
 import me.theblockbender.multiplier.data.Database;
 import me.theblockbender.multiplier.data.SQLite;
 import me.theblockbender.multiplier.listener.GuiPageListener;
+import me.theblockbender.multiplier.util.UtilBossBar;
 import me.theblockbender.multiplier.util.UtilLanguage;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -48,6 +49,7 @@ public class Main extends JavaPlugin {
     }
 
     public void onDisable() {
+        UtilBossBar.hideAllBossBars();
         db = null;
         messages = null;
         boosters.clear();
@@ -92,6 +94,7 @@ public class Main extends JavaPlugin {
      * Creates additional files.
      */
     private void createFiles() {
+        saveDefaultConfig();
         File messagesFile = new File(getDataFolder(), "language.yml");
         if (!messagesFile.exists()) {
             messagesFile.getParentFile().mkdirs();

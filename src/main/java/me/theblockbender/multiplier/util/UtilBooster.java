@@ -49,4 +49,11 @@ public class UtilBooster {
         }
         return map;
     }
+
+    public static boolean hasBoosterOfTypeLeft(List<Booster> boosters, BoosterType type) {
+        for (Booster booster : boosters) {
+            if (booster.getType() == type) return true;
+        }
+        return false;
+    }
 }

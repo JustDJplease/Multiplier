@@ -1,0 +1,13 @@
+BossBar:
+  minecraft:
+    color: GREEN
+    title: "&2{multiplier} Minecraft XP from &a{player} &7[&f{time}&7]"
+  skillapi:
+    color: BLUE
+    title: "&3{multiplier} Skill XP from &b{player} &7[&f{time}&7]"
+  mcmmo:
+    color: PURPLE
+    title: "&5{multiplier} mcMMO XP from &d{player} &7[&f{time}&7]"
+  jobs:
+    color: YELLOW
+    title: "&6{multiplier} Jobs XP from &e{player} &7[&f{time}&7]"

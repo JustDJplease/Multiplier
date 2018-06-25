@@ -26,6 +26,9 @@ public class BoosterTask implements Runnable {
         }
         for (Booster booster : endingBoosters) {
             main.boosters.remove(booster);
+            if (!UtilBooster.hasBoosterOfTypeLeft(main.boosters, booster.getType())) {
+                UtilBossBar.hideBossBar(booster.getType());
+            }
         }
 
         HashMap<BoosterType, List<Booster>> sortedBoosters = UtilBooster.sortBoostersByType(main.boosters);
