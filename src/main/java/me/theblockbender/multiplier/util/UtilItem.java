@@ -20,6 +20,19 @@ public class UtilItem {
      */
     public static ArrayList<ItemStack> createItemsFromResultSet(HashMap<Integer, HashMap<String, Object>> data) {
         ArrayList<ItemStack> items = new ArrayList<>();
+        if (data.isEmpty()) {
+            ItemStack empty = new ItemStack(Material.BARRIER, 1);
+            ItemMeta itemMeta = empty.getItemMeta();
+            itemMeta.setDisplayName("§c§lNo boosters");
+            List<String> lore = new ArrayList<>();
+            lore.add("§7");
+            lore.add("§7You do not have any multipliers.");
+            itemMeta.setLore(lore);
+            itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            empty.setItemMeta(itemMeta);
+            items.add(empty);
+        }
         for (Map.Entry<Integer, HashMap<String, Object>> data_id : data.entrySet()) {
             Integer id = data_id.getKey();
             HashMap<String, Object> results = data_id.getValue();
