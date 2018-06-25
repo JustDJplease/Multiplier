@@ -11,6 +11,13 @@ public class StartCommand {
         this.main = main;
     }
 
+    /**
+     * Method that is run upon executing /multiplier start ...
+     *
+     * @param commandSender Executor of the command. Can be the console.
+     * @param args          Arguments of the command. There are 4 arguments.
+     * @param alias         Possible alternative used instead of /multiply.
+     */
     public void run(CommandSender commandSender, String[] args, String alias) {
         // Validator:
         if (!commandSender.hasPermission("multiplier.admin.start")) {

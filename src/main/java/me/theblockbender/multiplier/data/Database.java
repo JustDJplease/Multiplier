@@ -24,6 +24,9 @@ public abstract class Database {
 
     public abstract void load();
 
+    /**
+     * Creates a new connection to the database and attempts to perform a dummy query on it.
+     */
     void initialize() {
         connection = getSQLConnection();
         try {
@@ -106,6 +109,9 @@ public abstract class Database {
         }
     }
 
+    /**
+     * Closes the database connection
+     */
     private void close(PreparedStatement ps, ResultSet rs) {
         try {
             if (ps != null) ps.close();

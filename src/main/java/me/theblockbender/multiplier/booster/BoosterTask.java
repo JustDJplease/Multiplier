@@ -16,6 +16,10 @@ public class BoosterTask implements Runnable {
         this.main = main;
     }
 
+    /**
+     * Task that checks which boosters are still active, and which boosters should expire. Also shows the BossBar in a repeating interval.
+     * It is advised that this task is to be run every tick!
+     */
     @Override
     public void run() {
         List<Booster> endingBoosters = new ArrayList<>();

@@ -94,7 +94,6 @@ public class Main extends JavaPlugin {
      * Creates additional files.
      */
     private void createFiles() {
-        saveDefaultConfig();
         File messagesFile = new File(getDataFolder(), "language.yml");
         if (!messagesFile.exists()) {
             messagesFile.getParentFile().mkdirs();
@@ -106,6 +105,7 @@ public class Main extends JavaPlugin {
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
+        saveDefaultConfig();
     }
 
     /**

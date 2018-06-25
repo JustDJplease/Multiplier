@@ -51,10 +51,12 @@ public class ScrollerInventory {
      */
     private Inventory getBlankPage(String name) {
         Inventory page = Bukkit.createInventory(null, 54, name);
+        // TODO allow custom button.
         ItemStack nextPage = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 5);
         ItemMeta meta = nextPage.getItemMeta();
         meta.setDisplayName(nextPageName);
         nextPage.setItemMeta(meta);
+        // TODO allow custom button.
         ItemStack prevPage = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 2);
         meta = prevPage.getItemMeta();
         meta.setDisplayName(previousPageName);

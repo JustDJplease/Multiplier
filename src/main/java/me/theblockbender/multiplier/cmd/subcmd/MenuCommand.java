@@ -13,6 +13,11 @@ public class MenuCommand {
         prepareGui = new PrepareGui(main);
     }
 
+    /**
+     * Method that is run upon executing /multiplier (with no other args)
+     *
+     * @param player Executor of the command. Cannot be the console.
+     */
     public void run(Player player) {
         // Validator:
         if (!player.hasPermission("multiplier.menu")) {

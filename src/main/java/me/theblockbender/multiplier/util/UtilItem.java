@@ -18,11 +18,10 @@ public class UtilItem {
             Integer id = data_id.getKey();
             HashMap<String, Object> results = data_id.getValue();
             for (Map.Entry<String, Object> item_data : results.entrySet()) {
-                // TODO customize item material in configuration.
+                // TODO allow custom button.
                 ItemStack item = new ItemStack(Material.EXP_BOTTLE, 1);
                 item.addEnchantment(Enchantment.ARROW_INFINITE, 1);
                 ItemMeta itemMeta = item.getItemMeta();
-                // TODO translatable
                 itemMeta.setDisplayName("§3§l" + results.get("type") + " §b§lExperience multiplier");
                 List<String> lore = new ArrayList<>();
                 lore.add("§7");
@@ -39,7 +38,7 @@ public class UtilItem {
                 itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 item.setItemMeta(itemMeta);
                 items.add(item);
-                // TODO use id.
+                // TODO save booster ID in NBT data.
             }
         }
         return items;

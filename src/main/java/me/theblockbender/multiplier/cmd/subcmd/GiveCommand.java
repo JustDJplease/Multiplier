@@ -11,6 +11,13 @@ public class GiveCommand {
         this.main = main;
     }
 
+    /**
+     * Method that is run upon executing /multiplier give ...
+     *
+     * @param commandSender Executor of the command. Can be the console.
+     * @param args          Arguments of the command. There are 6 arguments.
+     * @param alias         Possible alternative used instead of /give.
+     */
     public void run(CommandSender commandSender, String[] args, String alias) {
         // Validator:
         if (!commandSender.hasPermission("multiplier.admin.give")) {

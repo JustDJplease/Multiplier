@@ -18,6 +18,11 @@ public class BaseCommand implements CommandExecutor {
     private MenuCommand menuCommand;
     private StartCommand startCommand;
 
+    /**
+     * Constructor for the base command, /multiply. This will also create new instances of the sub-command classes.
+     *
+     * @param main Instance of the main class.
+     */
     public BaseCommand(Main main) {
         this.main = main;
         endCommand = new EndCommand(main);
@@ -26,6 +31,15 @@ public class BaseCommand implements CommandExecutor {
         startCommand = new StartCommand(main);
     }
 
+    /**
+     * Handler of the base command, /multiply.
+     *
+     * @param commandSender Executor of the command. Can be the console.
+     * @param command       Command used in this handler (/multiply.)
+     * @param label         Possible alternative used instead of /multiply.
+     * @param args          Arguments of the command.
+     * @return Aways true, indicates a successful run of the command.
+     */
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
         switch (args.length) {
@@ -60,6 +74,12 @@ public class BaseCommand implements CommandExecutor {
         return true;
     }
 
+    /**
+     * Sends the help menu output to the given CommandSender.
+     *
+     * @param commandSender CommandSender to receive the help output.
+     * @param alias         Possible alternative used instead of /multiply.
+     */
     private void sendHelp(CommandSender commandSender, String alias) {
         commandSender.sendMessage(main.getLanguage().getFormattedMessage("help-header").replace("{alias}", alias));
         commandSender.sendMessage(main.getLanguage().getFormattedMessage("help-menu").replace("{alias}", alias));

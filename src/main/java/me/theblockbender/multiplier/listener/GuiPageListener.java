@@ -15,6 +15,11 @@ public class GuiPageListener implements Listener {
         this.main = main;
     }
 
+    /**
+     * Event to manage the ScrollerInventory next and previous page buttons.
+     *
+     * @param event The called event (InventoryClickEvent)
+     */
     @EventHandler(ignoreCancelled = true)
     public void onClick(InventoryClickEvent event) {
         if (!(event.getWhoClicked() instanceof Player)) return;
