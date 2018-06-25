@@ -3,6 +3,7 @@ package me.theblockbender.multiplier.util;
 import me.theblockbender.multiplier.Main;
 import me.theblockbender.multiplier.booster.BoosterType;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
@@ -46,14 +47,15 @@ public class UtilBossBar {
     }
 
     private static String formatTitle(BoosterType type, Long shortestTime, Integer multiplier, String displayName) {
-        //TODO
-        return null;
+        String title = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("BossBar." + type.name() + ".title"));
+        title.replace("{multiplier}", Main.getInstance().getLanguage().getMultiplierWord(multiplier));
+        title.replace("{player}", displayName);
+        title.replace("{time}", Main.getInstance().getLanguage().getFormattedTime(shortestTime));
+        return title;
     }
 
     private static BossBar createNewBossBar(BoosterType type, Long shortestTime, Integer multiplier, String displayName) {
-        BossBar bar = Bukkit.createBossBar(formatTitle(type, shortestTime, multiplier, displayName), getBarColor(type), BarStyle.SOLID);
-        //TODO
-        return null;
+        return Bukkit.createBossBar(formatTitle(type, shortestTime, multiplier, displayName), getBarColor(type), BarStyle.SOLID);
     }
 
     private static BarColor getBarColor(BoosterType type) {

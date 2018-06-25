@@ -6,7 +6,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.List;
+import java.util.Locale;
 
 public class UtilLanguage {
 
@@ -103,5 +106,60 @@ public class UtilLanguage {
      */
     public void sendMessage(CommandSender commandSender, String string) {
         commandSender.sendMessage(translateColour(string));
+    }
+
+    public String getMultiplierWord(Integer multiplier) {
+        if (main.messages.contains("multiplier." + multiplier)) return translateColour("multiplier." + multiplier);
+        else return translateColour("multiplier.other");
+    }
+
+    public String getFormattedTime(Long shortestTime) {
+        return convertString(shortestTime);
+    }
+
+    private String convertString(long time) {
+        if (time == -1)
+            return translateColour("time.infinite");
+        String type;
+        int trim = 1;
+        if (time < 60000)
+            type = "SECONDS";
+        else if (time < 3600000)
+            type = "MINUTES";
+        else if (time < 86400000)
+            type = "HOURS";
+        else
+            type = "DAYS";
+        String text;
+        double num;
+        switch (type) {
+            case "DAYS":
+                text = (num = trim(trim, time / 86400000d)) + " " + translateColour("time.day");
+                break;
+            case "HOURS":
+                text = (num = trim(trim, time / 3600000d)) + " " + translateColour("time.hour");
+                break;
+            case "MINUTES":
+                text = (num = trim(trim, time / 60000d)) + " " + translateColour("time.minute");
+                break;
+            case "SECONDS":
+                text = (num = trim(trim, time / 1000d)) + " " + translateColour("time.second");
+                break;
+            default:
+                text = (int) (num = (int) trim(0, time)) + " " + translateColour("time.millisecond");
+                break;
+        }
+        if (num != 1)
+            text += translateColour("time.not-one");
+        return text;
+    }
+
+    private double trim(int degree, double d) {
+        StringBuilder format = new StringBuilder("#.#");
+        for (int i = 1; i < degree; i++)
+            format.append("#");
+        DecimalFormatSymbols symb = new DecimalFormatSymbols(Locale.US);
+        DecimalFormat twoDForm = new DecimalFormat(format.toString(), symb);
+        return Double.valueOf(twoDForm.format(d));
     }
 }

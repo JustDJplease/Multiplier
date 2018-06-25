@@ -56,4 +56,14 @@ public class UtilBooster {
         }
         return false;
     }
+
+    public static int getMultiplier(BoosterType type) {
+        HashMap<BoosterType, List<Booster>> boosters = sortBoostersByType(Main.getInstance().boosters);
+        return getAddedMultipliersTogether(boosters.get(type));
+    }
+
+    public static boolean isBoosterActive(BoosterType type) {
+        HashMap<BoosterType, List<Booster>> boosters = sortBoostersByType(Main.getInstance().boosters);
+        return boosters.containsKey(type);
+    }
 }
