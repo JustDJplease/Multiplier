@@ -11,3 +11,6 @@ BossBar:
   jobs:
     color: YELLOW
     title: "&6{multiplier} Jobs XP from &e{player} &7[&f{time}&7]"
+
+# Do not change the following:
+version: 1

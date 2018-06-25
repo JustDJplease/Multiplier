@@ -45,3 +45,6 @@ multiplier:
    9: "Nonuple"
    10: "Decuple"
    other: "Mega"
+
+# Do not change the following:
+version: 1
