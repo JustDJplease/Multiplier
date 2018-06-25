@@ -101,22 +101,40 @@ public class UtilLanguage {
     /**
      * Sends a message to the CommandSender
      *
-     * @param commandSender CommandSender (Console/Player) to receive the message
+     * @param commandSender CommandSender (Console/Player) to receive the message.
      * @param string        Path to the message in the configuration file.
      */
     public void sendMessage(CommandSender commandSender, String string) {
         commandSender.sendMessage(translateColour(string));
     }
 
+    /**
+     * Gets a a multiplier word from the language file fpr the corresponding value. (2 = Double, 3 = Triple etc.)
+     *
+     * @param multiplier The current active multiplier.
+     * @return A valid string word to describe this multiplier.
+     */
     public String getMultiplierWord(Integer multiplier) {
         if (main.messages.contains("multiplier." + multiplier)) return translateColour("multiplier." + multiplier);
         else return translateColour("multiplier.other");
     }
 
+    /**
+     * Gets a string to describe the time left.
+     *
+     * @param shortestTime Input long (time left).
+     * @return How much time is left (1000L = 1 Second).
+     */
     public String getFormattedTime(Long shortestTime) {
         return convertString(shortestTime);
     }
 
+    /**
+     * Converts a long into a readable string.
+     *
+     * @param time Input long (time).
+     * @return Valid string indicating time.
+     */
     private String convertString(long time) {
         if (time == -1)
             return translateColour("time.infinite");
@@ -154,6 +172,13 @@ public class UtilLanguage {
         return text;
     }
 
+    /**
+     * Formats a number nicely.
+     *
+     * @param degree Amount of decimal numbers.
+     * @param d      Number to be formatted.
+     * @return Formatted number.
+     */
     private double trim(int degree, double d) {
         StringBuilder format = new StringBuilder("#.#");
         for (int i = 1; i < degree; i++)

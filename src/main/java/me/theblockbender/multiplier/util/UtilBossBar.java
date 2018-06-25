@@ -16,6 +16,14 @@ public class UtilBossBar {
 
     private static HashMap<BoosterType, BossBar> bars = new HashMap<>();
 
+    /**
+     * Method to show a BossBar to online players.
+     *
+     * @param type         The BoosterType.
+     * @param shortestTime The duration left of the shortest booster.
+     * @param multiplier   The current multiplier active.
+     * @param displayName  The string to be displayed on the {player} placeholder
+     */
     public static void showBossBar(BoosterType type, Long shortestTime, Integer multiplier, String displayName) {
         BossBar bossbar;
         if (bars.containsKey(type)) {
@@ -30,6 +38,11 @@ public class UtilBossBar {
         }
     }
 
+    /**
+     * Method to hide all active BossBars of a given BoosterType.
+     *
+     * @param type The given BoosterType.
+     */
     public static void hideBossBar(BoosterType type) {
         if (bars.containsKey(type)) {
             BossBar bar = bars.get(type);
@@ -38,6 +51,9 @@ public class UtilBossBar {
         }
     }
 
+    /**
+     * Method to hide all booster BossBars.
+     */
     public static void hideAllBossBars() {
         for (Map.Entry<BoosterType, BossBar> entry : bars.entrySet()) {
             BossBar bar = entry.getValue();
@@ -46,6 +62,15 @@ public class UtilBossBar {
         bars.clear();
     }
 
+    /**
+     * Creates a string to be used as the title for a booster BossBar.
+     *
+     * @param type         The BoosterType.
+     * @param shortestTime The duration left of the shortest booster.
+     * @param multiplier   The current multiplier active.
+     * @param displayName  The string to be displayed on the {player} placeholder
+     * @return Valid title for the BossBar.
+     */
     private static String formatTitle(BoosterType type, Long shortestTime, Integer multiplier, String displayName) {
         String title = ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("BossBar." + type.name() + ".title"));
         title.replace("{multiplier}", Main.getInstance().getLanguage().getMultiplierWord(multiplier));
@@ -54,10 +79,24 @@ public class UtilBossBar {
         return title;
     }
 
+    /**
+     * Creates a new BossBar.
+     *
+     * @param type         The BoosterType.
+     * @param shortestTime The duration left of the shortest booster.
+     * @param multiplier   The current multiplier active.
+     * @param displayName  The string to be displayed on the {player} placeholder
+     * @return A new BossBar instance.
+     */
     private static BossBar createNewBossBar(BoosterType type, Long shortestTime, Integer multiplier, String displayName) {
         return Bukkit.createBossBar(formatTitle(type, shortestTime, multiplier, displayName), getBarColor(type), BarStyle.SOLID);
     }
 
+    /**
+     * Gets the corresponding BarColor from the config.
+     *
+     * @param type The BoosterType.
+     */
     private static BarColor getBarColor(BoosterType type) {
         try {
             return BarColor.valueOf(Main.getInstance().getConfig().getString("BossBar." + type.name() + ".color"));

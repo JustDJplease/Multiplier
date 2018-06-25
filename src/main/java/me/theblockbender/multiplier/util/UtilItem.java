@@ -12,6 +12,12 @@ import java.util.List;
 import java.util.Map;
 
 public class UtilItem {
+    /**
+     * Transforms a HashMap with the results of a database-query into a valid ArrayList with items to be shown to a player.
+     *
+     * @param data The input HashMap, gotten from the database.
+     * @return A list will valid items.
+     */
     public static ArrayList<ItemStack> createItemsFromResultSet(HashMap<Integer, HashMap<String, Object>> data) {
         ArrayList<ItemStack> items = new ArrayList<>();
         for (Map.Entry<Integer, HashMap<String, Object>> data_id : data.entrySet()) {
